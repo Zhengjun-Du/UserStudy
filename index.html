@@ -25,6 +25,17 @@
                 border:1px solid #ccc;
         }
 
+        .layers_bg{
+             background-image:
+                    linear-gradient(45deg, #ddd 25%, transparent 0),
+                    linear-gradient(45deg, transparent 75%, #ddd 0),
+                    linear-gradient(45deg, #ddd 25%, transparent 0),
+                    linear-gradient(45deg, transparent 75%, #ddd 0);
+
+                background-size:30px 30px;
+                background-position: 0 0,15px 15px,15px 15px,30px 30px;
+        }
+
         input[type="radio"]{
             zoom:150%;
         }
@@ -71,8 +82,8 @@
             ["1-Can", 20, 22,175,300], ["2-Battery", 14, 17,140,300], ["3-Cone", 9, 14,225,200],
             ["5-Purple-circle", 11, 12,200,180], ["9-Phone", 5, 7,200,300], ["13-Tiger",28,30,250,193],
             ["24-Shoe1",10,12,250,175],["25-Soda",23,25,186,300],["27-Teapot1",22,25,240,255],
-            ["7-Coffee",13,19,240,260],["39-syn6",5,4,200,200],["21-Rocket",30,30,250,150],
-            ["30-Trees",32,25,250,154],["4-Car",41,34,250,228],["11-Hammer",18,17,250,216],["16-House",42,48,250,131]
+            ["7-Coffee",13,19,240,260],["39-syn6",5,4,200,200],["26-Lamp",20,19,207,300],
+            ["30-Trees",32,25,250,154],["38-Syn5",6,6,200,200],["11-Hammer",18,17,250,216],["41-Syn8",6,6,200,200]
         );
         var html_str = "";
 
@@ -93,11 +104,11 @@
 
             //vectorize results A
             var str_a_head =
-                '<table style="text-align: left">' +
+                '<table style="text-align: left;">' +
                 '<tr style="text-align: center; padding-bottom: 10px; font-size: 1.4em; ">' +
                 '<th style="font-weight: normal;">输入图像</th>' +
                 '<th style="font-weight: normal; padding-left:30px">矢量化结果A</th>' +
-                '<th style="font-weight: normal;">选择图层在右侧展示</th>' +
+                '<th style="font-weight: normal;">点击复选框,选择图层在右侧展示</th>' +
                 '<th style="font-weight: normal;">图层展示效果</th>' +
                 '</tr>' +
 
@@ -112,7 +123,7 @@
                 '</div>' +
                 '</th>' +
 
-                '<th align="left">' +
+                '<th align="left" style="padding-left:10px; padding-right:10px">' +
                 '<input type="radio" name="select' + str_2i + '" checked="checked" onclick="SelectAll(' + str_2i + ')"> <span class="rtext">全选</span>' +
                 '<input type="radio" name="select' + str_2i + '" onclick="SelectNone(' + str_2i + ')"> <span class="rtext">全不选</span>' +
                 '<input type="radio" name="select' + str_2i + '" onclick="SelectInvert(' + str_2i + ')"> <span class="rtext">反选</span> <br>' +
@@ -127,12 +138,11 @@
                 str_a += '<input style="zoom:150%;" type="checkbox" onclick="CheckStatus(' + str_2i + ')" name="layer-order' + str_2i + '" checked>' + layer_order;
                 if ((j + 1) % row_len == 0) str_a += '<br>';
             }
-
           
 
             str_a +=
                 '</th>' +
-                '<th valign="top" style="width:' + img_w + 'px; padding-left:20px">' +
+                '<th valign="top"  style="width:' + img_w + 'px; padding-left:20px; padding-right:20px; text-align:center" class="layers_bg">' +
                 '<div id="blend-layers' + str_2i + '" class="blend-layers">';
 
             for (var j = 0; j < Number(our_layer_cnt); j++)
@@ -145,7 +155,7 @@
                 '</table>';
 
             str_a +=
-                '<p style="font-size: 1.3em; margin-top:5px; margin-bottom:5px">下方展示了上述矢量化结果的所有图层, 拖动滚动条以查看全部图层。</p>' +
+                '<p style="font-size: 1.3em; margin-top:5px; margin-bottom:5px">下方展示了上述矢量化结果的所有图层(合成图像时，左侧的图层位于下方，右侧的图层位于上方), 拖动滚动条以查看全部图层。</p>' +
                 '<div class="all-layers" style="overflow-x: auto; overflow-y: hidden; height:200px; width:95%; white-space: nowrap; ">' +
                 '<table>' +
                 '<tr>';
@@ -167,12 +177,12 @@
 
             //vectorize results B
             var str_b_head =
-                '<hr style="border:1px dashed gray;">' +
-                '<table style="text-align: left">' +
+                '<hr style="border:1px solid blue;">' +
+                '<table style="text-align: left;">' +
                 '<tr style="text-align: center; padding-bottom: 10px; font-size: 1.4em; ">' +
                 '<th style="font-weight: normal;">输入图像</th>' +
                 '<th style="font-weight: normal; padding-left:30px">矢量化结果B</th>' +
-                '<th style="font-weight: normal;">选择图层在右侧展示</th>' +
+                '<th style="font-weight: normal;">点击复选框,选择图层在右侧展示</th>' +
                 '<th style="font-weight: normal;">图层展示效果</th>' +
                 '</tr>' +
 
@@ -192,7 +202,7 @@
                 '</div>' +
                 '</th>' +
 
-                '<th align="left">' +
+                '<th align="left" style="padding-left:10px; padding-right:10px">' +
                 '<input type="radio" name="select' + str_2i_1 + '" checked="checked" onclick="SelectAll(' + str_2i_1 + ')"> <span class="rtext">全选</span>' +
                 '<input type="radio" name="select' + str_2i_1 + '" onclick="SelectNone(' + str_2i_1 + ')"> <span class="rtext">全不选</span>' +
                 '<input type="radio" name="select' + str_2i_1 + '" onclick="SelectInvert(' + str_2i_1 + ')"> <span class="rtext">反选</span> <br>' +
@@ -203,10 +213,10 @@
                 str_b += '<input style="zoom:150%;" type="checkbox" onclick="CheckStatus(' + str_2i_1 + ')" name="layer-order' + str_2i_1 + '" checked>' + layer_order;
                 if ((j + 1) % row_len == 0) str_b += '<br>';
             }
-            str_b += '</th>';
 
             str_b +=
-                '<th valign="top" style="width: 200px; padding-left:20px">' +
+                '</th>' + 
+                '<th valign="top" style="width:' + img_w + 'px; padding-left:20px; padding-right:20px; text-align:center" class="layers_bg">' +
                 '<div id="blend-layers' + str_2i_1 + '" class="blend-layers">';
 
             for (var j = 0; j < Number(photo2clipart_layer_cnt); j++)
@@ -218,7 +228,7 @@
                 '</tr>' +
                 '</table>' +
 
-                '<p style="font-size: 1.3em; margin-top:5px; margin-bottom:5px">下方展示了上述矢量化结果的所有图层, 拖动滚动条以查看全部图层。</p>' +
+                '<p style="font-size: 1.3em; margin-top:5px; margin-bottom:5px">下方展示了上述矢量化结果的所有图层(合成图像时，左侧的图层位于下方，右侧的图层位于上方), 拖动滚动条以查看全部图层。</p>' +
                 '<div class="all-layers" style="overflow-x: auto; overflow-y: hidden; height:200px; width:95%; white-space: nowrap;">' +
                 '<table>' +
                 '<tr>';
@@ -251,6 +261,23 @@
 </head>
 
 <body style="margin:15px;">
+<h2>用户实验简单介绍</h2>
+<p style="font-size: 1.3em; border:2px solid red; padding: 10px; line-height: 1.5">
+    总共包含16组对比实验，每一组对比展示包括4行： <br>
+    第1行： 第1列：<b>输入图像</b>，第2列：<b>矢量化结果A</b>， 第3列：<b>交互式选择图层</b>， 第4列：<b>展示第3列选择的图层</b>。 <br>
+    第2行： 矢量化结果A的所有图层。 <br>
+
+    第3行： 第1列：<b>输入图像</b>，第2列：<b>矢量化结果B</b>， 第3列：<b>交互式选择图层</b>， 第4列：<b>展示第3列选择的图层</b>。 <br>
+    第4行： 矢量化结果B的所有图层。 <br> <br>
+
+    请认真观察: <br>
+    (1) 第1行的前2列 和 第3行的前2列, 比较矢量化结果A和B的重建质量(跟输入图像的接近程度或相似程序)； <br>
+    (2) 第2行(矢量化结果A的所有图层) 和 第4行(矢量化结果A的所有图层)，并通过交互式的图层展示，对图层质量进行客观评价。 <br>
+
+    请将结果反馈至问卷：<a href="https://wj.qq.com/s2/11081702/3216/">https://wj.qq.com/s2/11081702/3216/</a>
+
+</p>
+
 </body>
 
 </html>
