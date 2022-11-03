@@ -79,26 +79,27 @@
     $(document).ready(function() {
 
         var data_list = new Array(
-            ["1-Can", 20, 21,175,300], ["2-Battery", 14, 16,140,300], ["3-Cone", 9, 13,225,200],
-            ["5-Purple-circle", 11, 12,200,180], ["9-Phone", 5, 6,200,300], ["13-Tiger",28,29,250,193],
-            ["24-Shoe1",10,11,250,175],["25-Soda",23,25,186,300],["27-Teapot1",22,24,240,255],
-            ["7-Coffee",13,18,240,260],["39-syn6",5,4,200,200],["26-Lamp",20,18,207,300],
-            ["30-Trees",32,25,250,154],["38-syn5",6,6,200,200],["11-Hammer",18,17,250,216],["41-syn8",6,6,200,200]
+            ["1-Can", "易拉罐", 20, 21, 175, 300], ["2-Battery", "电池", 14, 16, 140, 300], ["3-Cone", "交通路障", 9, 13, 225, 200],
+            ["5-Purple-circle", "紫色按钮", 11, 12, 200, 180], ["9-Phone", "手机", 5, 6, 200, 300], ["13-Tiger", "老虎", 28, 29, 250, 193],
+            ["24-Shoe1", "高跟鞋", 10, 11, 250, 175], ["25-Soda", "Soda", 23, 25, 186, 300], ["27-Teapot1", "茶壶", 22, 24, 240, 255],
+            ["7-Coffee", "咖啡杯", 13, 18, 240, 260], ["26-Lamp", "台灯", 20, 18, 207, 300], ["11-Hammer", "锤子", 18, 16, 250, 216],
+            ["15-Teacup", "茶杯", 9, 10, 250, 250], ["38-syn5", "几何形状1[黄]", 6, 6, 200, 200], ["41-syn8", "几何形状2[紫]", 6, 6, 200, 200],
+            ["39-syn6", "几何形状3[绿]", 5, 4, 200, 200]
         );
         var html_str = "";
 
         for (var i in data_list) {
             var dir = data_list[i][0];
-            var our_layer_cnt = data_list[i][1];
-            var photo2clipart_layer_cnt = data_list[i][2];
+            var name = data_list[i][1];
+            var our_layer_cnt = data_list[i][2];
+            var photo2clipart_layer_cnt = data_list[i][3];
+            var img_w = data_list[i][4];
+            var img_h = data_list[i][5];
             var str_2i = (2 * Number(i)).toString();
             var str_2i_1 = (2 * Number(i) + 1).toString();
 
-            var img_w = data_list[i][3];
-            var img_h = data_list[i][4];
-
             var str_a = "";
-            html_str += '<h2>结果对比' + (Number(i) + 1).toString() + '</h2>';
+            html_str += '<h2>结果对比' + (Number(i) + 1).toString() + '：' + name + '</h2>';
             //html_str += '<hr style="border:2px solid black;">';
             html_str += '<div style="border:2px solid gray; padding:2px">';
 
@@ -113,7 +114,7 @@
                 '</tr>' +
 
                 '<tr>' +
-                '<th valign="top"><img style="height:'+ img_h +'px" src="./data/' + dir + '/input.png" /></th>' +
+                '<th valign="top"><img style="height:' + img_h + 'px" src="./data/' + dir + '/input.png" /></th>' +
                 '<th valign="top" style="width:' + img_w + 'px; padding-left:30px">' + '<div class="composition" style="height:">';
 
             for (var j = 0; j < Number(our_layer_cnt); j++)
@@ -123,14 +124,14 @@
                 '</div>' +
                 '</th>' +
 
-                '<th align="left" style="padding-left:10px; padding-right:10px">' +
-                '<input type="radio" name="select' + str_2i + '" checked="checked" onclick="SelectAll(' + str_2i + ')"> <span class="rtext">全选</span>' +
-                '<input type="radio" name="select' + str_2i + '" onclick="SelectNone(' + str_2i + ')"> <span class="rtext">全不选</span>' +
+                '<th align="left" style="padding-left:10px; padding-right:20px">' +
+                '<input type="radio" name="select' + str_2i + '" onclick="SelectAll(' + str_2i + ')"> <span class="rtext">全选</span>' +
+                '<input type="radio" name="select' + str_2i + '" checked="checked"  onclick="SelectNone(' + str_2i + ')"> <span class="rtext">全不选</span>' +
                 '<input type="radio" name="select' + str_2i + '" onclick="SelectInvert(' + str_2i + ')"> <span class="rtext">反选</span> <br>' +
                 '<hr>';
 
             var row_len = 6;
-            if(Math.min(Number(our_layer_cnt), Number(photo2clipart_layer_cnt)) < 6)
+            if (Math.min(Number(our_layer_cnt), Number(photo2clipart_layer_cnt)) < 6)
                 row_len = Math.min(Number(our_layer_cnt), Number(photo2clipart_layer_cnt));
 
             for (var j = 0; j < Number(our_layer_cnt); j++) {
@@ -138,7 +139,7 @@
                 str_a += '<input style="zoom:150%;" type="checkbox" onclick="CheckStatus(' + str_2i + ')" name="layer-order' + str_2i + '" checked>' + layer_order;
                 if ((j + 1) % row_len == 0) str_a += '<br>';
             }
-          
+
 
             str_a +=
                 '</th>' +
@@ -202,9 +203,9 @@
                 '</div>' +
                 '</th>' +
 
-                '<th align="left" style="padding-left:10px; padding-right:10px">' +
-                '<input type="radio" name="select' + str_2i_1 + '" checked="checked" onclick="SelectAll(' + str_2i_1 + ')"> <span class="rtext">全选</span>' +
-                '<input type="radio" name="select' + str_2i_1 + '" onclick="SelectNone(' + str_2i_1 + ')"> <span class="rtext">全不选</span>' +
+                '<th align="left" style="padding-left:10px; padding-right:20px">' +
+                '<input type="radio" name="select' + str_2i_1 + '" onclick="SelectAll(' + str_2i_1 + ')"> <span class="rtext">全选</span>' +
+                '<input type="radio" name="select' + str_2i_1 + '" checked="checked" onclick="SelectNone(' + str_2i_1 + ')"> <span class="rtext">全不选</span>' +
                 '<input type="radio" name="select' + str_2i_1 + '" onclick="SelectInvert(' + str_2i_1 + ')"> <span class="rtext">反选</span> <br>' +
                 '<hr>';
 
@@ -215,7 +216,7 @@
             }
 
             str_b +=
-                '</th>' + 
+                '</th>' +
                 '<th valign="top" style="width:' + img_w + 'px; padding-left:20px; padding-right:20px; text-align:center" class="layers_bg">' +
                 '<div id="blend-layers' + str_2i_1 + '" class="blend-layers">';
 
@@ -248,7 +249,7 @@
                 '</table>' +
                 '</div>';
 
-            if(Number(i) % 2 == 0)
+            if (Number(i) % 2 == 0)
                 html_str += str_a_head + str_a + str_b_head + str_b;
             else
                 html_str += str_a_head + str_b + str_b_head + str_a;
@@ -256,28 +257,25 @@
         }
 
         $("body").append(html_str);
+        $(".blend-layers > img").hide();
+        $("input[type='checkbox']").prop('checked', false);
     });
     </script>
 </head>
 
 <body style="margin:15px;">
-<h2>用户实验简单介绍</h2>
-<p style="font-size: 1.3em; border:2px solid red; padding: 10px; line-height: 1.5">
-    总共包含16组对比实验，每一组对比展示包括4行： <br>
-    第1行： 第1列：<b>输入图像</b>，第2列：<b>矢量化结果A</b>， 第3列：<b>交互式选择图层</b>， 第4列：<b>展示第3列选择的图层</b>。 <br>
-    第2行： 矢量化结果A的所有图层。 <br>
-
-    第3行： 第1列：<b>输入图像</b>，第2列：<b>矢量化结果B</b>， 第3列：<b>交互式选择图层</b>， 第4列：<b>展示第3列选择的图层</b>。 <br>
-    第4行： 矢量化结果B的所有图层。 <br> <br>
-
-    请认真观察: <br>
-    (1) 第1行的前2列 和 第3行的前2列, 比较矢量化结果A和B的重建质量(跟输入图像的接近程度或相似程序)； <br>
-    (2) 第2行(矢量化结果A的所有图层) 和 第4行(矢量化结果A的所有图层)，并通过交互式的图层展示，对图层质量进行客观评价。 <br>
-
-    请将结果反馈至问卷：<a href="https://wj.qq.com/s2/11081702/3216/">https://wj.qq.com/s2/11081702/3216/</a>
-
-</p>
-
+    <h2>用户实验简单介绍</h2>
+    <p style="font-size: 1.3em; border:2px solid red; padding: 10px; line-height: 1.5">
+        总共包含16组对比实验，每一组对比展示包括4行： <br>
+        第1行: 第1列：<b>输入图像</b>, 第2列：<b>矢量化结果A</b>, 第3列：<b>交互式选择图层</b>, 第4列：<b>展示第3列选择的图层</b>。 <br>
+        第2行: 矢量化结果A的所有图层。 <br>
+        第3行: 第1列：<b>输入图像</b>, 第2列：<b>矢量化结果B</b>, 第3列：<b>交互式选择图层</b>, 第4列：<b>展示第3列选择的图层</b>。 <br>
+        第4行: 矢量化结果B的所有图层。 <br> <br>
+        请认真观察: <br>
+        (1) 第1行的前2列 和 第3行的前2列, 比较<b>矢量化结果A和B跟输入图像的接近程度</b>； <br>
+        (2) 第2行(结果A)和第4行(结果B)的图层,并通过交互式的图层展示,比较图层的<b>完整性</b>和<b>编辑便捷性</b>。 <br>
+        最后，将结果反馈至问卷：<a href="https://wj.qq.com/s2/11081702/3216/">https://wj.qq.com/s2/11081702/3216/</a>, &nbsp;有任何问题请联系：13897408428.
+    </p>
 </body>
 
 </html>
