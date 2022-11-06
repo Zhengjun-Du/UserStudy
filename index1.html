@@ -79,24 +79,42 @@
     $(document).ready(function() {
 
         var data_list = new Array(
-            ["2-Battery", "电池", 14, 16, 140, 300], 
-            ["4-Car", "", 41, 34, 222, 203],
-            ["7-Coffee", "咖啡杯", 13, 19, 240, 260], 
-            ["10-cow", "牛", 48, 52, 226, 202], 
-            ["12-Truck", "老虎", 28, 29, 250, 193],
-            ["16-House", "房屋", 42, 48, 275, 145],
-            ["18-Sound", "音响", 32, 29, 254, 312],
-            ["20-Bear", "熊", 30, 27, 239, 255],
-            ["22-Mouse", "鼠标", 15, 18, 186, 300],
-            ["24-Shoe1", "高跟鞋", 10, 11, 250, 175], 
-            ["26-Lamp", "台灯", 20, 18, 207, 300], 
+            ["1-Can", "易拉罐", 20, 21, 175, 300], 
+            ["3-Cone", "交通路障", 9, 9, 225, 200],
+            ["5-Purple-circle", "紫色按钮", 11, 12, 200, 180], 
+            ["9-Phone", "手机", 5, 6, 200, 300], 
+            ["11-Hammer", "锤子", 18, 17, 300, 260], 
+            ["13-Tiger", "老虎", 28, 29, 250, 193],
+            ["17-Apple", "苹果", 13, 12, 320, 320],
+            ["19-Torch", "手电筒", 19, 20, 320, 302],
+            ["21-Rocket", "火箭", 30, 30, 400, 240],
+            ["23-Plane", "飞机", 50, 52, 363, 184], 
+            ["25-Soda", "Soda", 23, 25, 186, 300], 
+            ["30-Trees", "树林", 32, 25, 296, 183], 
             ["27-Teapot1", "茶壶", 22, 24, 240, 255],
             ["29-Shoe2", "高跟鞋", 10, 7, 300, 231], 
-            ["31-Teapot2", "茶壶", 29, 26, 246, 284], 
-            ["34-syn1", "几何形状", 6, 6, 222, 222], 
-            ["38-syn5", "几何形状1[黄]", 6, 6, 222, 222], 
-            ["40-syn7", "几何形状2[紫]", 6, 6, 222, 222],
+            ["33-Syn0", "几何形状1", 5, 5, 183, 296],
+            ["35-syn2", "几何形状2", 6, 6, 300, 300],
+            ["37-syn4", "几何形状3", 6, 6, 300, 300],
         );
+
+
+        Math.seed = 10;
+        Math.seededRandom = function(max, min) {
+            max = max || 1;
+            min = min || 0;
+ 
+            Math.seed = (Math.seed * 9301 + 49297) % 233280;
+            var rnd = Math.seed / 233280.0;
+ 
+            return Math.ceil( min + rnd * (max - min) ); 
+        };
+
+
+        var randNums = [];   
+        for (var i = 0; i < 17 ; i++)
+            randNums.push(Math.seededRandom(1,100));
+
         var html_str = "";
 
         for (var i in data_list) {
@@ -108,6 +126,7 @@
             var img_h = data_list[i][5];
             var str_2i = (2 * Number(i)).toString();
             var str_2i_1 = (2 * Number(i) + 1).toString();
+            var rnd = randNums[i];
 
             var str_a = "";
             html_str += '<h2>结果对比' + (Number(i) + 1).toString() + '：' + name + '</h2>';
@@ -125,11 +144,11 @@
                 '</tr>' +
 
                 '<tr>' +
-                '<th valign="top"><img style="height:' + img_h + 'px" src="./data1/' + dir + '/input.png" /></th>' +
+                '<th valign="top"><img style="height:' + img_h + 'px" src="./data0/' + dir + '/input.png" /></th>' +
                 '<th valign="top" style="width:' + img_w + 'px; padding-left:30px">' + '<div class="composition" style="height:">';
 
             for (var j = 0; j < Number(our_layer_cnt); j++)
-                str_a += '<img height="' + img_h + 'px" src="./data1/' + dir + '/ours.png/' + (j).toString() + '.png" />';
+                str_a += '<img height="' + img_h + 'px" src="./data0/' + dir + '/ours.png/' + (j).toString() + '.png" />';
 
             str_a +=
                 '</div>' +
@@ -158,7 +177,7 @@
                 '<div id="blend-layers' + str_2i + '" class="blend-layers">';
 
             for (var j = 0; j < Number(our_layer_cnt); j++)
-                str_a += '<img height="' + img_h + 'px" src="./data1/' + dir + '/ours.png/' + j.toString() + '.png" />';
+                str_a += '<img height="' + img_h + 'px" src="./data0/' + dir + '/ours.png/' + j.toString() + '.png" />';
 
             str_a +=
                 '</div>' +
@@ -173,7 +192,7 @@
                 '<tr>';
 
             for (var j = 0; j < Number(our_layer_cnt); j++)
-                str_a += '<th><img src="./data1/' + dir + '/ours.png/' + j.toString() + '.png" /></th>';
+                str_a += '<th><img src="./data0/' + dir + '/ours.png/' + j.toString() + '.png" /></th>';
 
             str_a += '</tr>';
 
@@ -200,7 +219,7 @@
 
                 '<tr>' +
                 '<th valign="top">' +
-                '<img style="height:' + img_h + 'px" src="./data1/' + dir + '/input.png" />' +
+                '<img style="height:' + img_h + 'px" src="./data0/' + dir + '/input.png" />' +
                 '</th>' +
                 '<th valign="top" style="width:' + img_w + 'px; padding-left:30px">' +
                 '<div class="composition">';
@@ -208,7 +227,7 @@
             var str_b = "";
 
             for (var j = 0; j < Number(photo2clipart_layer_cnt); j++)
-                str_b += '<img height="' + img_h + 'px" src="./data1/' + dir + '/photo2clipart.png/' + (j).toString() + '.png" />';
+                str_b += '<img height="' + img_h + 'px" src="./data0/' + dir + '/photo2clipart.png/' + (j).toString() + '.png" />';
 
             str_b +=
                 '</div>' +
@@ -232,7 +251,7 @@
                 '<div id="blend-layers' + str_2i_1 + '" class="blend-layers">';
 
             for (var j = 0; j < Number(photo2clipart_layer_cnt); j++)
-                str_b += '<img height="' + img_h + 'px" src="./data1/' + dir + '/photo2clipart.png/' + j.toString() + '.png" />';
+                str_b += '<img height="' + img_h + 'px" src="./data0/' + dir + '/photo2clipart.png/' + j.toString() + '.png" />';
 
             str_b +=
                 '</div>' +
@@ -246,7 +265,7 @@
                 '<tr>';
 
             for (var j = 0; j < Number(photo2clipart_layer_cnt); j++)
-                str_b += '<th><img src="./data1/' + dir + '/photo2clipart.png/' + j.toString() + '.png" /></th>';
+                str_b += '<th><img src="./data0/' + dir + '/photo2clipart.png/' + j.toString() + '.png" /></th>';
 
             str_b += '</tr>';
 
@@ -260,7 +279,7 @@
                 '</table>' +
                 '</div>';
 
-            if (Number(i) % 2 == 0)
+            if (rnd % 2 == 0)
                 html_str += str_a_head + str_a + str_b_head + str_b;
             else
                 html_str += str_a_head + str_b + str_b_head + str_a;
@@ -288,7 +307,7 @@
         请认真观察: <br>
         (1) 第1行的前2列 和 第3行的前2列, 比较<b>矢量化结果A和B跟输入图像的接近程度</b>； <br>
         (2) 第2行(结果A)和第4行(结果B)的图层, 用户可以在第1行的第3列选择单独显示某些图层, 比较图层的<b>完整性</b>和<b>编辑便捷性</b>。 <br>
-        最后，将结果反馈至问卷：<a href="https://wj.qq.com/s2/11081702/3216/" target="_blank">https://wj.qq.com/s2/11081702/3216/</a>, &nbsp;有任何问题请联系：13897408428.
+        最后，将结果反馈至问卷：<a href="https://wj.qq.com/s2/11081702/3216/" target="_blank">https://wj.qq.com/s2/11102543/62d2/</a>, &nbsp;有任何问题请联系：13897408428.
     </p>
 </body>
 
