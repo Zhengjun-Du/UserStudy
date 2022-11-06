@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#_未命名的渐变_5);
+      }
+
+      .cls-2 {
+        fill: url(#_未命名的渐变_4-2);
+      }
+
+      .cls-3 {
+        fill: url(#_未命名的渐变_4);
+      }
+
+      .cls-4 {
+        fill: url(#_未命名的渐变_5-2);
+      }
+
+      .cls-5 {
+        fill: url(#_未命名的渐变_3-2);
+      }
+
+      .cls-6 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-6, .cls-7 {
+        fill: none;
+      }
+
+      .cls-8 {
+        fill: url(#a2ed1d96-aebd-4bf9-a4b3-645f1ac);
+      }
+
+      .cls-9 {
+        fill: url(#_未命名的渐变_7-2);
+      }
+
+      .cls-10 {
+        fill: #d3d3d3;
+      }
+
+      .cls-11 {
+        fill: url(#_未命名的渐变_2-2);
+      }
+
+      .cls-12 {
+        fill: url(#_未命名的渐变_6-2);
+      }
+
+      .cls-13 {
+        fill: url(#_未命名的渐变_6);
+      }
+
+      .cls-14 {
+        fill: url(#_未命名的渐变_2);
+      }
+
+      .cls-15 {
+        fill: url(#_未命名的渐变_3);
+      }
+
+      .cls-16 {
+        fill: url(#_未命名的渐变_7);
+      }
+    </style>
+    <pattern id="a2ed1d96-aebd-4bf9-a4b3-645f1ac" x="0" y="0" width="40" height="40" patternTransform="translate(161 -15583.24) scale(1 -1)" patternUnits="userSpaceOnUse" viewBox="0 0 40 40">
+      <g>
+        <rect class="cls-7" width="40" height="40"/>
+        <g>
+          <rect class="cls-7" width="40" height="40"/>
+          <rect class="cls-7" width="40" height="40"/>
+          <rect class="cls-10" y="20" width="20" height="20"/>
+          <rect class="cls-10" x="20" width="20" height="20"/>
+        </g>
+      </g>
+    </pattern>
+    <linearGradient id="_未命名的渐变_7" data-name="未命名的渐变 7" x1="624.72" y1="550.13" x2="625.77" y2="551.07" gradientTransform="translate(-312374.01 -275049.01) scale(500)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#643165" stop-opacity=".99"/>
+      <stop offset="1" stop-color="#800079" stop-opacity=".99"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_2" data-name="未命名的渐变 2" x1="621.92" y1="550.24" x2="622.33" y2="551.44" gradientTransform="translate(-88672.3 -78828.63) scale(143.2 143.33)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#180e7c" stop-opacity=".67"/>
+      <stop offset="1" stop-color="#3a2a77" stop-opacity=".66"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_3" data-name="未命名的渐变 3" x1="623.29" y1="550.15" x2="624.1" y2="551.29" gradientTransform="translate(-139119.17 -122599.1) scale(223.26 223.28)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#001761" stop-opacity=".41"/>
+      <stop offset="1" stop-color="#0f2a38" stop-opacity=".55"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_4" data-name="未命名的渐变 4" x1="621.62" y1="550.21" x2="622.71" y2="551.2" gradientTransform="translate(-90947.8 -262472.73) scale(146.3 477.15)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fe0005" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#fc00f8" stop-opacity=".54"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_5" data-name="未命名的渐变 5" x1="622.15" y1="550.13" x2="622.15" y2="551.13" gradientTransform="translate(-89335 -213421.01) scale(144 388)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#030bf8" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#50589a" stop-opacity=".37"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_6" data-name="未命名的渐变 6" x1="622.96" y1="550.21" x2="623.88" y2="551.27" gradientTransform="translate(-126329.32 -111665.09) scale(203.24 203.31)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8b2700" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#25321e" stop-opacity=".48"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_7-2" data-name="未命名的渐变 7" x1="625.72" y1="550.13" x2="626.77" y2="551.07" xlink:href="#_未命名的渐变_7"/>
+    <linearGradient id="_未命名的渐变_2-2" data-name="未命名的渐变 2" x1="628.91" y1="550.24" x2="629.32" y2="551.44" xlink:href="#_未命名的渐变_2"/>
+    <linearGradient id="_未命名的渐变_3-2" data-name="未命名的渐变 3" x1="627.78" y1="550.15" x2="628.58" y2="551.29" xlink:href="#_未命名的渐变_3"/>
+    <linearGradient id="_未命名的渐变_4-2" data-name="未命名的渐变 4" x1="631.88" y1="550.21" x2="632.97" y2="551.2" xlink:href="#_未命名的渐变_4"/>
+    <linearGradient id="_未命名的渐变_5-2" data-name="未命名的渐变 5" x1="632.58" x2="632.58" xlink:href="#_未命名的渐变_5"/>
+    <linearGradient id="_未命名的渐变_6-2" data-name="未命名的渐变 6" x1="632.8" y1="550.21" x2="633.73" y2="551.27" xlink:href="#_未命名的渐变_6"/>
+  </defs>
+  <g id="_图层_1" data-name="图层 1">
+    <g id="_图层_1-2" data-name=" 图层 1">
+      <rect class="cls-8" x="0" y="0" width="2500" height="500"/>
+    </g>
+    <g id="layer-1">
+      <path id="region-1-1" class="cls-16" d="M0,250v250H500V0H0V250Z"/>
+    </g>
+    <g id="layer-2">
+      <path id="region-2-1" class="cls-14" d="M409.4,54.1c-16.8,1.5-30.9,8.3-43.4,20.9-14.3,14.3-21.1,30.4-21.1,50.5s6.8,36.2,21.1,50.5,30.4,21.1,50.5,21.1,36.2-6.8,50.5-21.1,21.1-30.4,21.1-50.5-6.8-36.2-21.1-50.5c-15.8-15.9-35.1-22.9-57.6-20.9Z"/>
+      <path id="region-2-2" class="cls-15" d="M115.9,255.2c-53.3,3.8-98,48.6-101.7,102-2.4,34,8.9,65,32.3,88.3,23.4,23.5,54.4,34.8,88.6,32.3,53.2-3.8,97.8-48.4,101.7-101.6,2.5-34.2-8.8-65.3-32.3-88.7-23.4-23.5-54.4-34.8-88.6-32.3Z"/>
+    </g>
+    <g id="layer-3">
+      <path id="region-3-1" class="cls-3" d="M53,10c0,.3-9.7,107.6-21.5,238.5-11.8,130.9-21.5,238.2-21.5,238.5,.1,.3,.7-.6,1.4-2,3.1-5.7,144.9-325.6,144.9-327,0-.8-22.8-34.1-50.7-74C57.1,14.8,53,9,53,10Z"/>
+      <path id="region-3-2" class="cls-1" d="M183,222v194h144V28H183V222Z"/>
+    </g>
+    <g id="layer-4">
+      <path id="region-4-1" class="cls-13" d="M366.4,207.1c-47.9,3.4-88.8,44.2-92.2,92.2-2.3,31.6,7.8,59.8,29.3,81.2,21.4,21.5,49.6,31.6,81.2,29.3,48-3.4,88.7-44.1,92.1-92.1,2.3-31.6-7.8-59.8-29.3-81.2-21.3-21.4-49.5-31.6-81.1-29.4Z"/>
+    </g>
+  </g>
+  <g id="_图层_2" data-name="图层 2">
+    <g id="layer-1-2" data-name="layer-1">
+      <path id="region-1-1-2" data-name="region-1-1" class="cls-9" d="M500,250v250h500V0H500V250Z"/>
+    </g>
+    <g id="layer-2-2" data-name="layer-2">
+      <path id="region-2-1-2" data-name="region-2-1" class="cls-11" d="M1410.4,54.1c-16.8,1.5-30.9,8.3-43.4,20.9-14.3,14.3-21.1,30.4-21.1,50.5s6.8,36.2,21.1,50.5c14.3,14.3,30.4,21.1,50.5,21.1s36.2-6.8,50.5-21.1c14.3-14.3,21.1-30.4,21.1-50.5s-6.8-36.2-21.1-50.5c-15.8-15.9-35.1-22.9-57.6-20.9Z"/>
+      <path id="region-2-2-2" data-name="region-2-2" class="cls-5" d="M1116.9,255.2c-53.3,3.8-98,48.6-101.7,102-2.4,34,8.9,65,32.3,88.3,23.4,23.5,54.4,34.8,88.6,32.3,53.2-3.8,97.8-48.4,101.7-101.6,2.5-34.2-8.8-65.3-32.3-88.7-23.4-23.5-54.4-34.8-88.6-32.3Z"/>
+    </g>
+    <g id="layer-3-2" data-name="layer-3">
+      <path id="region-3-1-2" data-name="region-3-1" class="cls-2" d="M1554,10c0,.3-9.7,107.6-21.5,238.5-11.8,130.9-21.5,238.2-21.5,238.5,.1,.3,.7-.6,1.4-2,3.1-5.7,144.9-325.6,144.9-327,0-.8-22.8-34.1-50.7-74-48.5-69.2-52.6-75-52.6-74Z"/>
+      <path id="region-3-2-2" data-name="region-3-2" class="cls-4" d="M1684,222v194h144V28h-144V222Z"/>
+    </g>
+    <g id="layer-4-2" data-name="layer-4">
+      <path id="region-4-1-2" data-name="region-4-1" class="cls-12" d="M2367.4,207.1c-47.9,3.4-88.8,44.2-92.2,92.2-2.3,31.6,7.8,59.8,29.3,81.2,21.4,21.5,49.6,31.6,81.2,29.3,48-3.4,88.7-44.1,92.1-92.1,2.3-31.6-7.8-59.8-29.3-81.2-21.3-21.4-49.5-31.6-81.1-29.4Z"/>
+    </g>
+    <line class="cls-6" x1="1500" y1="0" x2="1500" y2="500"/>
+    <line class="cls-6" x1="2000" y1="0" x2="2000" y2="500"/>
+  </g>
+</svg>

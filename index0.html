@@ -1,0 +1,296 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="./js/jquery-3.5.1.min.js"></script>
+    <style>
+        .composition > img, .blend-layers > img{
+                mix-blend-mode: normal;
+                position: absolute;
+                /*height: 300px;*/
+                /*width: 180px;*/
+                display: block;
+        }
+
+        .all-layers th > img{
+                background-image:
+                    linear-gradient(45deg, #ddd 25%, transparent 0),
+                    linear-gradient(45deg, transparent 75%, #ddd 0),
+                    linear-gradient(45deg, #ddd 25%, transparent 0),
+                    linear-gradient(45deg, transparent 75%, #ddd 0);
+
+                background-size:30px 30px;
+                background-position: 0 0,15px 15px,15px 15px,30px 30px;
+                height:150px;
+                margin-left: 5px;
+                border:1px solid #ccc;
+        }
+
+        .layers_bg{
+             background-image:
+                    linear-gradient(45deg, #ddd 25%, transparent 0),
+                    linear-gradient(45deg, transparent 75%, #ddd 0),
+                    linear-gradient(45deg, #ddd 25%, transparent 0),
+                    linear-gradient(45deg, transparent 75%, #ddd 0);
+
+                background-size:30px 30px;
+                background-position: 0 0,15px 15px,15px 15px,30px 30px;
+        }
+
+        input[type="radio"]{
+            zoom:150%;
+        }
+
+        .rtext{
+            font-size:1.3em;
+            font-weight:normal;
+        }
+
+    </style>
+    <script type="text/javascript">
+    function CheckStatus(id) {
+        $("input[name='layer-order" + id + "']").each(function(i) {
+            if (this.checked)
+                $("#blend-layers" + id + " > img").eq(i).show();
+            else
+                $("#blend-layers" + id + " > img").eq(i).hide();
+        });
+    }
+
+    function SelectAll(id) {
+        $("input[name='layer-order" + id + "']").prop('checked', true);
+        $("#blend-layers" + id + " > img").show();
+    }
+
+    function SelectNone(id) {
+        $("input[name='layer-order" + id + "']").prop('checked', false);
+        $("#blend-layers" + id + " > img").hide();
+    }
+
+    function SelectInvert(id) {
+        $("input[name='layer-order" + id + "']").each(function(i) {
+            this.checked = !this.checked;
+            if (this.checked)
+                $("#blend-layers" + id + " > img").eq(i).show();
+            else
+                $("#blend-layers" + id + " > img").eq(i).hide();
+        });
+    }
+
+    $(document).ready(function() {
+
+        var data_list = new Array(
+            ["1-Can", "易拉罐", 20, 21, 175, 300], 
+            ["3-Cone", "交通路障", 9, 13, 225, 200],
+            ["5-Purple-circle", "紫色按钮", 11, 12, 200, 180], 
+            ["9-Phone", "手机", 5, 6, 200, 300], 
+            ["11-Hammer", "锤子", 18, 17, 300, 260], 
+            ["13-Tiger", "老虎", 28, 29, 250, 193],
+            ["17-Apple", "苹果", 13, 12, 320, 320],
+            ["19-Torch", "手电筒", 19, 20, 320, 302],
+            ["21-Rocket", "火箭", 30, 30, 400, 240],
+            ["23-Plane", "飞机", 50, 52, 363, 184], 
+            ["25-Soda", "Soda", 23, 25, 186, 300], 
+            ["27-Teapot1", "茶壶", 22, 24, 240, 255],
+            ["30-Trees", "树林", 32, 25, 296, 183], 
+            ["33-Syn0", "几何形状", 5, 5, 183, 296],
+            ["35-syn2", "几何形状", 6, 6, 300, 300],
+            ["37-syn4", "几何形状", 6, 6, 300, 300],
+            ["39-syn6", "几何形状", 5, 5, 300, 300],
+            ["41-syn8", "几何形状2[紫]", 6, 6, 300, 300],
+        );
+        var html_str = "";
+
+        for (var i in data_list) {
+            var dir = data_list[i][0];
+            var name = data_list[i][1];
+            var our_layer_cnt = data_list[i][2];
+            var photo2clipart_layer_cnt = data_list[i][3];
+            var img_w = data_list[i][4];
+            var img_h = data_list[i][5];
+            var str_2i = (2 * Number(i)).toString();
+            var str_2i_1 = (2 * Number(i) + 1).toString();
+
+            var str_a = "";
+            html_str += '<h2>结果对比' + (Number(i) + 1).toString() + '：' + name + '</h2>';
+            //html_str += '<hr style="border:2px solid black;">';
+            html_str += '<div style="border:2px solid gray; padding:2px">';
+
+            //vectorize results A
+            var str_a_head =
+                '<table style="text-align: left;">' +
+                '<tr style="text-align: center; padding-bottom: 10px; font-size: 1.4em; ">' +
+                '<th style="font-weight: normal;">输入图像</th>' +
+                '<th style="font-weight: normal; padding-left:30px">矢量化结果A</th>' +
+                '<th style="font-weight: normal; color: red">点击复选框,选择图层在右侧展示</th>' +
+                '<th style="font-weight: normal;">图层展示效果</th>' +
+                '</tr>' +
+
+                '<tr>' +
+                '<th valign="top"><img style="height:' + img_h + 'px" src="./data0/' + dir + '/input.png" /></th>' +
+                '<th valign="top" style="width:' + img_w + 'px; padding-left:30px">' + '<div class="composition" style="height:">';
+
+            for (var j = 0; j < Number(our_layer_cnt); j++)
+                str_a += '<img height="' + img_h + 'px" src="./data0/' + dir + '/ours.png/' + (j).toString() + '.png" />';
+
+            str_a +=
+                '</div>' +
+                '</th>' +
+
+                '<th align="left" style="padding-left:10px; padding-right:20px">' +
+                '<input type="radio" name="select' + str_2i + '" onclick="SelectAll(' + str_2i + ')"> <span class="rtext">全选</span>' +
+                '<input type="radio" name="select' + str_2i + '" checked="checked"  onclick="SelectNone(' + str_2i + ')"> <span class="rtext">全不选</span>' +
+                '<input type="radio" name="select' + str_2i + '" onclick="SelectInvert(' + str_2i + ')"> <span class="rtext">反选</span> <br>' +
+                '<hr>';
+
+            var row_len = 6;
+            if (Math.min(Number(our_layer_cnt), Number(photo2clipart_layer_cnt)) < 6)
+                row_len = Math.min(Number(our_layer_cnt), Number(photo2clipart_layer_cnt));
+
+            for (var j = 0; j < Number(our_layer_cnt); j++) {
+                var layer_order = 'L' + ('0' + (j + 1).toString()).substr(-2);
+                str_a += '<input style="zoom:150%;" type="checkbox" onclick="CheckStatus(' + str_2i + ')" name="layer-order' + str_2i + '" checked>' + layer_order;
+                if ((j + 1) % row_len == 0) str_a += '<br>';
+            }
+
+
+            str_a +=
+                '</th>' +
+                '<th valign="top"  style="width:' + img_w + 'px; padding-left:20px; padding-right:20px; text-align:center" class="layers_bg">' +
+                '<div id="blend-layers' + str_2i + '" class="blend-layers">';
+
+            for (var j = 0; j < Number(our_layer_cnt); j++)
+                str_a += '<img height="' + img_h + 'px" src="./data0/' + dir + '/ours.png/' + j.toString() + '.png" />';
+
+            str_a +=
+                '</div>' +
+                '</th>' +
+                '</tr>' +
+                '</table>';
+
+            str_a +=
+                '<p style="font-size: 1.3em; margin-top:5px; margin-bottom:5px">下方展示了上述矢量化结果的所有图层(合成图像时，左侧的图层位于下方，右侧的图层位于上方), 拖动滚动条以查看全部图层。</p>' +
+                '<div class="all-layers" style="overflow-x: auto; overflow-y: hidden; height:200px; width:95%; white-space: nowrap; ">' +
+                '<table>' +
+                '<tr>';
+
+            for (var j = 0; j < Number(our_layer_cnt); j++)
+                str_a += '<th><img src="./data0/' + dir + '/ours.png/' + j.toString() + '.png" /></th>';
+
+            str_a += '</tr>';
+
+            str_a += '<tr>';
+            for (var j = 0; j < Number(our_layer_cnt); j++) {
+                var layer_order = 'L' + ('0' + (j + 1).toString()).substr(-2);
+                str_a += '<th>' + layer_order + '</th>';
+            }
+            str_a +=
+                '</tr>' +
+                '</table>' +
+                '</div>';
+
+            //vectorize results B
+            var str_b_head =
+                '<hr style="border:1px solid blue;">' +
+                '<table style="text-align: left;">' +
+                '<tr style="text-align: center; padding-bottom: 10px; font-size: 1.4em; ">' +
+                '<th style="font-weight: normal;">输入图像</th>' +
+                '<th style="font-weight: normal; padding-left:30px">矢量化结果B</th>' +
+                '<th style="font-weight: normal; color: red">点击复选框,选择图层在右侧展示</th>' +
+                '<th style="font-weight: normal;">图层展示效果</th>' +
+                '</tr>' +
+
+                '<tr>' +
+                '<th valign="top">' +
+                '<img style="height:' + img_h + 'px" src="./data0/' + dir + '/input.png" />' +
+                '</th>' +
+                '<th valign="top" style="width:' + img_w + 'px; padding-left:30px">' +
+                '<div class="composition">';
+
+            var str_b = "";
+
+            for (var j = 0; j < Number(photo2clipart_layer_cnt); j++)
+                str_b += '<img height="' + img_h + 'px" src="./data0/' + dir + '/photo2clipart.png/' + (j).toString() + '.png" />';
+
+            str_b +=
+                '</div>' +
+                '</th>' +
+
+                '<th align="left" style="padding-left:10px; padding-right:20px">' +
+                '<input type="radio" name="select' + str_2i_1 + '" onclick="SelectAll(' + str_2i_1 + ')"> <span class="rtext">全选</span>' +
+                '<input type="radio" name="select' + str_2i_1 + '" checked="checked" onclick="SelectNone(' + str_2i_1 + ')"> <span class="rtext">全不选</span>' +
+                '<input type="radio" name="select' + str_2i_1 + '" onclick="SelectInvert(' + str_2i_1 + ')"> <span class="rtext">反选</span> <br>' +
+                '<hr>';
+
+            for (var j = 0; j < Number(photo2clipart_layer_cnt); j++) {
+                var layer_order = 'L' + ('0' + (j + 1).toString()).substr(-2);
+                str_b += '<input style="zoom:150%;" type="checkbox" onclick="CheckStatus(' + str_2i_1 + ')" name="layer-order' + str_2i_1 + '" checked>' + layer_order;
+                if ((j + 1) % row_len == 0) str_b += '<br>';
+            }
+
+            str_b +=
+                '</th>' +
+                '<th valign="top" style="width:' + img_w + 'px; padding-left:20px; padding-right:20px; text-align:center" class="layers_bg">' +
+                '<div id="blend-layers' + str_2i_1 + '" class="blend-layers">';
+
+            for (var j = 0; j < Number(photo2clipart_layer_cnt); j++)
+                str_b += '<img height="' + img_h + 'px" src="./data0/' + dir + '/photo2clipart.png/' + j.toString() + '.png" />';
+
+            str_b +=
+                '</div>' +
+                '</th>' +
+                '</tr>' +
+                '</table>' +
+
+                '<p style="font-size: 1.3em; margin-top:5px; margin-bottom:5px">下方展示了上述矢量化结果的所有图层(合成图像时，左侧的图层位于下方，右侧的图层位于上方), 拖动滚动条以查看全部图层。</p>' +
+                '<div class="all-layers" style="overflow-x: auto; overflow-y: hidden; height:200px; width:95%; white-space: nowrap;">' +
+                '<table>' +
+                '<tr>';
+
+            for (var j = 0; j < Number(photo2clipart_layer_cnt); j++)
+                str_b += '<th><img src="./data0/' + dir + '/photo2clipart.png/' + j.toString() + '.png" /></th>';
+
+            str_b += '</tr>';
+
+            str_b += '<tr>';
+            for (var j = 0; j < Number(photo2clipart_layer_cnt); j++) {
+                var layer_order = 'L' + ('0' + (j + 1).toString()).substr(-2);
+                str_b += '<th>' + layer_order + '</th>';
+            }
+            str_b +=
+                '</tr>' +
+                '</table>' +
+                '</div>';
+
+            if (Number(i) % 2 == 0)
+                html_str += str_a_head + str_a + str_b_head + str_b;
+            else
+                html_str += str_a_head + str_b + str_b_head + str_a;
+            html_str += '</div>';
+        }
+
+        $("body").append(html_str);
+        $(".blend-layers > img").hide();
+        $("input[type='checkbox']").prop('checked', false);
+    });
+    </script>
+</head>
+
+<body style="margin:15px;">
+    <h2>用户实验简单介绍</h2>
+    图像矢量化技术在平面设计，LOGO制作等诸多领域具有广泛应用。 本实验主要针对多层矢量化技术进行效果评估，输入是一张图像，输出是多个半透明图层，这些图层通过alpha混合可以恢复出输入图像。为了对图像矢量化效果进行客观的评价, 特邀请大家参与用户调研，感谢大家的参与！<br>
+    <p style="font-size: 1.3em; border:2px solid red; padding: 10px; line-height: 1.5">
+    	<span style="color:red">鉴于手机端布局错乱，图片被缩小，不方便观察和用户交互，因此，强烈建议使用电脑点开本页面！！</span><br>
+
+        本页面总共包含16组对比实验，每一组对比展示包括4行： <br>
+        第1行: 第1列：<b>输入图像</b>, 第2列：<b>矢量化结果A</b>, 第3列：<b>交互式选择图层</b>, 第4列：<b>展示第3列选择的图层</b>。 <br>
+        第2行: 矢量化结果A的所有图层。 <br>
+        第3行: 第1列：<b>输入图像</b>, 第2列：<b>矢量化结果B</b>, 第3列：<b>交互式选择图层</b>, 第4列：<b>展示第3列选择的图层</b>。 <br>
+        第4行: 矢量化结果B的所有图层。 <br> <br>
+        请认真观察: <br>
+        (1) 第1行的前2列 和 第3行的前2列, 比较<b>矢量化结果A和B跟输入图像的接近程度</b>； <br>
+        (2) 第2行(结果A)和第4行(结果B)的图层, 用户可以在第1行的第3列选择单独显示某些图层, 比较图层的<b>完整性</b>和<b>编辑便捷性</b>。 <br>
+        最后，将结果反馈至问卷：<a href="https://wj.qq.com/s2/11081702/3216/" target="_blank">https://wj.qq.com/s2/11081702/3216/</a>, &nbsp;有任何问题请联系：13897408428.
+    </p>
+</body>
+
+</html>
